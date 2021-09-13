@@ -20,7 +20,7 @@ export function mdLinksToPrettyLinks(
 	markdown: string,
 	isIndex: boolean,
 	indexBaseName: string
-) {
+): string {
 	const matchRelativeLink = /\[([^\[\]]+)\]\((?!.*\/\/)([^)]+\))/gim;
 	const matchRelativeLinkToMarkdownFile = /\[([^\[\]]+)\]\((?!.*\/\/)([^)]+\.md\))/gim;
 	const pattern = isIndex ? matchRelativeLinkToMarkdownFile : matchRelativeLink;
@@ -63,20 +63,20 @@ export function mdLinksToPrettyLinks(
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const frontMatter = (metadata: { [key: string]: any }) =>
+export const frontMatter = (metadata: { [key: string]: any }): string =>
 	Object.keys(metadata).reduce(
 		(frontMatterContent, key) =>
 			frontMatterContent + `${key}: ${JSON.stringify(metadata[key])}` + "\n",
 		frontMatterSep + "\n"
 	) + frontMatterSep;
 
-export const mdContent = (metadata: Record<string, unknown>, content: string) =>
+export const mdContent = (metadata: Record<string, unknown>, content: string): string =>
 	frontMatter(metadata) + "\n\n" + content;
 
-export const mdLink = (text: string, href: string) =>
+export const mdLink = (text: string, href: string): string =>
 	`[${text}](${encodeURI(href)})`;
 
-export function mdTableColumnHeaders(headers: string[]) {
+export function mdTableColumnHeaders(headers: string[]): string {
 	return (
 		mdTableRow(headers) +
 		headers.reduce(
@@ -94,7 +94,7 @@ export function mdTableColumnHeaders(headers: string[]) {
  * @param {...string[]} values - Values to form the row
  * @returns - A string containing a single table row in markdown format
  */
-export function mdTableRow(values: string[]) {
+export function mdTableRow(values: string[]): string {
 	return (
 		values
 			.reduce((columns, value) => columns + `${value} | `, "| ")
@@ -102,7 +102,7 @@ export function mdTableRow(values: string[]) {
 	);
 }
 
-export function mdTableRows(values: string[][]) {
+export function mdTableRows(values: string[][]): string {
 	return values.reduce((rows, row) => rows + mdTableRow(row), "");
 }
 
@@ -110,4 +110,4 @@ export const writeMarkdown = async (
 	path: string,
 	metadata: Record<string, unknown>,
 	content: string
-) => writeFile(path, mdContent(metadata, content)).then(() => path);
+): Promise<string> => writeFile(path, mdContent(metadata, content)).then(() => path);

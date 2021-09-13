@@ -24,7 +24,7 @@ cache:
 npm-build:
   stage: build
   script:
-    - npm install
+    - npm ci
     - npm run build
 
 npm-test:
@@ -32,6 +32,6 @@ npm-test:
   image: openjdk:15-jdk-alpine
   script:
     - apk add --no-cache graphviz nodejs npm ttf-droid bash ttf-droid-nonlatin
-    - npm install
+    - npm ci
     - npm test
 

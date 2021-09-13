@@ -19,7 +19,7 @@ export const writeFile = promisify(fs.writeFile);
 
 const noSuchFileOrDirectoryCode = "ENOENT";
 
-export async function statSafe(path: string) {
+export async function statSafe(path: string): Promise<fs.Stats | null> {
 	try {
 		return await stat(path);
 	} catch (err) {
@@ -27,7 +27,7 @@ export async function statSafe(path: string) {
 	}
 }
 
-export function commonRoot(paths: string[]) {
+export function commonRoot(paths: string[]): string | undefined {
 	return !paths || paths.length === 0
 		? undefined
 		: paths
@@ -39,7 +39,9 @@ export function commonRoot(paths: string[]) {
 			});
 }
 
-export function copy(sourcePath?: string, ...includeOnly: string[]) {
+export type CopyActions = { to: (destination: string) => Promise<string[]>; newerFiles: { to: (destination: string) => Promise<string[]>; }; };
+
+export function copy(sourcePath?: string, ...includeOnly: string[]): CopyActions {
 	const dirPath = sourcePath || commonRoot(includeOnly) || ".";
 	const cp = async function (
 		destination: string,
@@ -77,7 +79,7 @@ export function copy(sourcePath?: string, ...includeOnly: string[]) {
 	};
 }
 
-export async function exists(path: string) {
+export async function exists(path: string): Promise<boolean> {
 	try {
 		return !!(await stat(path));
 	} catch (err) {
@@ -88,7 +90,7 @@ export async function exists(path: string) {
 	}
 }
 
-export async function files(...sources: string[]) {
+export async function files(...sources: string[]): Promise<string[]> {
 	const result: string[] = [];
 	const work: Promise<void>[] = [];
 	for (const source of sources) {
@@ -110,7 +112,7 @@ export async function files(...sources: string[]) {
 	return result;
 }
 
-export async function dirs(sources: string[]) {
+export async function dirs(sources: string[]): Promise<string[]> {
 	const result: string[] = [];
 	const work: Promise<void>[] = [];
 	for (const source of sources) {

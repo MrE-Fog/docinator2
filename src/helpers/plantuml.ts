@@ -14,11 +14,11 @@ const plantUmlJarFilePath = join(
 	"plantuml.jar"
 );
 
-export function normalize(pumlText: string) {
+export function normalize(pumlText: string): string {
 	return pumlText.replace(/^@startuml.*/, "@startuml");
 }
 
-function normalizePumls(pumlPaths: string[]) {
+function normalizePumls(pumlPaths: string[]): Promise<void[]> {
 	return Promise.all(
 		pumlPaths.map(async (path) => {
 			const content = await readFile(path, "utf8");
@@ -54,7 +54,7 @@ function normalizePumls(pumlPaths: string[]) {
  * @param {string[]} pumlPaths - The filepaths to render. Only paths ending in .puml will be rendered.
  * @returns An array of paths to the rendered diagrams
  */
-export async function render(format: string, pumlPaths: string[]) {
+export async function render(format: string, pumlPaths: string[]): Promise<string[]> {
 	if (!format || !pumlPaths || pumlPaths.length === 0) return [];
 
 	pumlPaths = pumlPaths.filter((path) => path.toLowerCase().endsWith(".puml"));

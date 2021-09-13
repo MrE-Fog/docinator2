@@ -10,6 +10,8 @@ type CommandInfo = {
 	name?: string;
 };
 
+export type RegisterActions = { to: (commander: CommanderStatic) => void };
+
 /**
  * Registers an async action with commander so that the action can be awaited
  *
@@ -27,7 +29,7 @@ export function register({
 	description,
 	argsDescriptor,
 	action,
-}: CommandInfo) {
+}: CommandInfo): RegisterActions {
 	return {
 		to: function (parent: CommanderStatic) {
 			const commandDescriptor = `${name || action.name} ${
@@ -49,6 +51,6 @@ export function register({
  *
  * @export
  */
-export async function execute() {
+export async function execute(): Promise<void> {
 	await Promise.all(promises);
 }

@@ -11,7 +11,7 @@ export const defaults = {
 	sources: ["."],
 };
 
-async function sourceFiles(sources: string[], destination: string) {
+async function sourceFiles(sources: string[], destination: string): Promise<string[]> {
 	sources = sources && sources.length ? sources : ["."];
 	if (sources.length === 1 && (await isDir(sources[0]))) {
 		sources = await files(sources[0]);
@@ -105,7 +105,7 @@ export async function serve(
 	return result;
 }
 
-export async function clean(destination: string = defaults.destination) {
+export async function clean(destination: string = defaults.destination): Promise<void> {
 	console.log("Cleaning site", { destination });
 	await remove(destination);
 }

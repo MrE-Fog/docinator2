@@ -13,6 +13,6 @@
   "author": "T-Mobile Product & Technology",
   "license": "Apache-2.0",
   "devDependencies": {
-    "hugo-bin": "^0.63.1"
+    "hugo-bin": "^0.69.0"
   }
 }

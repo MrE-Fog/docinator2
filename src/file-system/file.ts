@@ -11,7 +11,7 @@ import { dirname } from "path";
  * @param {string} destination - The destination to copy the source file to
  * @returns - The destination path if copied, null if the copy was not performed
  */
-export async function copyIfNewer(source: string, destination: string) {
+export async function copyIfNewer(source: string, destination: string): Promise<string | null> {
 	const newer =
 		!(await exists(destination)) ||
 		(await stat(source)).mtime > (await stat(destination)).mtime;
@@ -32,6 +32,6 @@ export async function copyIfNewer(source: string, destination: string) {
  * @param {string} path - The path to the file to get the size of
  * @returns - The size of the file in bytes
  */
-export async function size(path: string) {
+export async function size(path: string): Promise<number> {
 	return (await stat(path)).size;
 }

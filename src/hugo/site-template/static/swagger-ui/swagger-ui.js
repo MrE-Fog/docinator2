@@ -6575,7 +6575,7 @@ function blitBuffer (src, dst, offset, length) {
 },{"base64-js":16,"ieee754":17,"is-array":18}],16:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
-;(function (exports) {
+(function (exports) {
 	'use strict';
 
   var Arr = (typeof Uint8Array !== 'undefined')
@@ -21571,7 +21571,7 @@ function makeStackTraceLong(error, promise) {
         error.stack.indexOf(STACK_JUMP_SEPARATOR) === -1
     ) {
         var stacks = [];
-        for (var p = promise; !!p; p = p.source) {
+        for (var p = promise; p; p = p.source) {
             if (p.stack) {
                 stacks.unshift(p.stack);
             }
@@ -23264,7 +23264,7 @@ if (typeof window !== 'undefined') { // Browser window
  * Noop.
  */
 
-function noop(){};
+function noop(){}
 
 /**
  * Check if `obj` is a host object,
@@ -23489,7 +23489,7 @@ function parseHeader(str) {
 
 function type(str){
   return str.split(/ *; */).shift();
-};
+}
 
 /**
  * Return header field parameters.
@@ -23508,7 +23508,7 @@ function params(str){
     if (key && val) obj[key] = val;
     return obj;
   }, {});
-};
+}
 
 /**
  * Initialize a new `Response` with the given `xhr`.
@@ -24357,7 +24357,7 @@ function del(url, fn){
   var req = request('DELETE', url);
   if (fn) req.end(fn);
   return req;
-};
+}
 
 request.del = del;
 request.delete = del;
@@ -24438,7 +24438,7 @@ module.exports = Emitter;
 
 function Emitter(obj) {
   if (obj) return mixin(obj);
-};
+}
 
 /**
  * Mixin the emitter properties.

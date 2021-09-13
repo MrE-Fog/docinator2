@@ -1,4 +1,4 @@
-import { exec as shellExec } from "shelljs";
+import { exec as shellExec, ShellString } from "shelljs";
 
 /**
  * Wraps the shelljs.exec command to add logging and error handling.
@@ -7,7 +7,7 @@ import { exec as shellExec } from "shelljs";
  * @param {string} command - The command to execute (please maintain shell/windows-command compatibility whenever possible)
  * @returns The result of the executed command
  */
-export function exec(command: string) {
+export function exec(command: string): ShellString {
 	console.log(command);
 	const result = shellExec(command);
 	console.log(result.stdout);
@@ -28,7 +28,7 @@ export function exec(command: string) {
  * @param {number} size - the desired chunk size
  * @returns - an array of arrays
  */
-export function chunk<T>(array: T[], size: number) {
+export function chunk<T>(array: T[], size: number): T[][] {
 	const arrayCopy = [...array]; // Prevent mutation on slice()
 	const result = [];
 	for (let i = 0; i < arrayCopy.length; i += size) {
@@ -43,7 +43,7 @@ export async function batchProcess<TItem, TResult>(
   array: TItem[],
   size: number,
   processBatch: { (items: TItem[]): Promise<TResult> }
-) {
+): Promise<void> {
 	const batches = chunk(array, size);
 	for (const batch of batches) {
 		await processBatch(batch);

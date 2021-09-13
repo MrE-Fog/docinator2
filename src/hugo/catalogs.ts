@@ -13,7 +13,7 @@ export async function hugoRenderedItemsCatalog(
 	cataloger: Cataloger,
 	catalogPath: string,
 	...contentPaths: string[]
-) {
+): Promise<string[]> {
 	const catalogItems = await catalog(contentPaths, catalogPath, cataloger);
 	const indexPath = join(catalogPath, "_index.md");
 	if (!(await exists(indexPath))) {

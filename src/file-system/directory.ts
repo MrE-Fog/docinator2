@@ -9,7 +9,7 @@ import { mkdir } from "shelljs";
  * @param {string} path - The path to ensure the existence of
  * @returns - the provided path
  */
-export async function ensure(path: string) {
+export async function ensure(path: string): Promise<string> {
 	if (!(await exists(path))) {
 		mkdir("-p", path);
 	}
@@ -24,7 +24,7 @@ export async function ensure(path: string) {
  * @param {string} path - The path to check for existence
  * @returns - True if the specified directory exists, otherwise false
  */
-export async function exists(path: string) {
+export async function exists(path: string): Promise<boolean> {
 	return !!(await isDir(path));
 }
 
@@ -35,7 +35,7 @@ export async function exists(path: string) {
  * @param {string} path - The path to check
  * @returns - True if the provided path is a directory, otherwise false
  */
-export async function isDir(path: string) {
+export async function isDir(path: string): Promise<boolean> {
 	const stats = await statSafe(path);
 	return !!stats && stats.isDirectory();
 }
@@ -46,7 +46,7 @@ export async function isDir(path: string) {
  * @export
  * @param {string} path - The path to remove
  */
-export async function remove(path: string) {
+export async function remove(path: string): Promise<void> {
 	if (await exists(path)) {
 		const contents = await files(path);
 		await Promise.all(contents.map((file) => unlink(file)));
