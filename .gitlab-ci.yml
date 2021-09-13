@@ -1,12 +1,9 @@
 include:
   - project: 'tmobile/templates'
-    ref: tmo/master
     file: '/gitlab-ci/.tmo.global.common.gitlab-ci.yml'
   - project: 'tmobile/templates'
-    ref: tmo/master
     file: '/gitlab-ci/.tmo.job.npm.gitlab-ci.yml'
   - project: 'tmobile/templates'
-    ref: tmo/master
     file: '/gitlab-ci/.tmo.job.docker.gitlab-ci.yml'
 
 stages:
