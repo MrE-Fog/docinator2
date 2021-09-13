@@ -1,13 +1,13 @@
 {
     "cSpell.words": [
-		"SUBMODULE",
-		"Woot",
+		"cheatsheet",
 		"checkonly",
 		"djava",
 		"docinator",
 		"enduml",
 		"gitlab",
 		"graphviz",
+		"Hanselman",
 		"iuml",
 		"nonlatin",
 		"openjdk",
@@ -16,8 +16,10 @@
 		"pumls",
 		"shortcode",
 		"startuml",
+		"SUBMODULE",
 		"submodules",
-		"tmobile"
+		"tmobile",
+		"Woot"
 	],
     "editor.insertSpaces": false,
     "editor.detectIndentation": false,
