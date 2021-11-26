@@ -86,6 +86,8 @@ docker run -v "$(pwd):/data" -p 1313:1313 -ti docinator serve
 >
 > Note about WSL: WSL may not allow port access on `1313` by default. Use `sudo ufw allow 1313` to allow access to port `1313`. You can disallow this later with `sudo ufw deny 1313`.
 
+Heads up: changes to the Hugo template need a rebuild of the Docker image...
+
 ## Acknowledgements
 
 * [Hugo](https://gohugo.io/) and [Hugo Theme Learn](https://themes.gohugo.io/hugo-theme-learn/) are used to generate static websites.
