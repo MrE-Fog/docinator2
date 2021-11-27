@@ -3,7 +3,7 @@
 	"description": "Extracts documentation from your project to produce a beautiful static website",
 	"license": "Apache-2.0",
 	"name": "@tmobile/docinator",
-	"version": "0.4.4",
+	"version": "0.4.5",
 	"scripts": {
 		"build": "tsc && cp -R src/hugo/site-template dist/hugo/site-template && npm link --force && npm prune && npm pack",
 		"build:clean": "npm run clean && npm run build",
