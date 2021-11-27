@@ -18,7 +18,7 @@ RUN set -e && \
 # 
 # Build the host container
 
-FROM openjdk:15-jdk-alpine
+FROM openjdk:17-jdk-alpine
 
 RUN apk add --no-cache nodejs npm graphviz ttf-droid bash ttf-droid-nonlatin
 
