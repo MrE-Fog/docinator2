@@ -18,12 +18,16 @@ RUN set -e && \
 # 
 # Build the host container
 
-FROM openjdk:15-jdk-alpine
+FROM openjdk:17-jdk-alpine
 
 RUN apk add --no-cache nodejs npm graphviz ttf-droid bash ttf-droid-nonlatin
 
 COPY --from=builder /docinator /docinator
 WORKDIR /docinator
+RUN npm install -g .
+
+RUN apk add --no-cache nodejs npm graphviz ttf-droid bash ttf-droid-nonlatin
+RUN npm run build
 RUN npm install -g .
 
 WORKDIR /data
