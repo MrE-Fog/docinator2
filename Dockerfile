@@ -26,10 +26,6 @@ COPY --from=builder /docinator /docinator
 WORKDIR /docinator
 RUN npm install -g .
 
-RUN apk add --no-cache nodejs npm graphviz ttf-droid bash ttf-droid-nonlatin
-RUN npm run build
-RUN npm install -g .
-
 WORKDIR /data
 
 EXPOSE 1313:1313
