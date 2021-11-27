@@ -1,4 +1,4 @@
-import { CommanderStatic } from "commander";
+import commander, { CommanderStatic } from "commander";
 
 const promises: Promise<unknown>[] = [];
 
@@ -10,7 +10,7 @@ type CommandInfo = {
 	name?: string;
 };
 
-export type RegisterActions = { to: (commander: CommanderStatic) => void };
+export type RegisterActions = { to: (commander: CommanderStatic) => commander.Command };
 
 /**
  * Registers an async action with commander so that the action can be awaited

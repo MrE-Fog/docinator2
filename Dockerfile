@@ -12,19 +12,18 @@ COPY docs/ docs
 
 RUN set -e && \
     export NPM_CONFIG_PREFIX=~/.npm-global && \
-    npm install --unsafe-perm 
+    npm install --unsafe-perm && \
+	npm run build
 
 # 
 # Build the host container
 
 FROM openjdk:15-jdk-alpine
 
-COPY --from=builder /docinator /docinator
-
-WORKDIR /docinator
-
 RUN apk add --no-cache nodejs npm graphviz ttf-droid bash ttf-droid-nonlatin
-RUN npm run build
+
+COPY --from=builder /docinator /docinator
+WORKDIR /docinator
 RUN npm install -g .
 
 WORKDIR /data
