@@ -16,7 +16,7 @@
 	"dependencies": {
 		"commander": "^6.1.0",
 		"graceful-fs": "^4.2.4",
-		"hugo-bin": "^0.69.0",
+		"hugo-bin": "^0.111.4",
 		"shelljs": "^0.8.4"
 	},
 	"devDependencies": {
